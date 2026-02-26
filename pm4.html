@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ion Hospital</title>
+
+<style>
+:root{
+  --primary:#0F4C5C;
+  --accent:#FF6B6B;
+  --cream:#F8F5F2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:var(--cream);
+  color:#333;
+  scroll-behavior:smooth;
+}
+
+/* ALERT TICKER */
+.ticker{
+  background:var(--primary);
+  color:white;
+  overflow:hidden;
+  white-space:nowrap;
+  padding:10px 0;
+  font-weight:500;
+}
+.ticker span{
+  display:inline-block;
+  padding-left:100%;
+  animation:scroll 18s linear infinite;
+}
+@keyframes scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-100%);}
+}
+
+/* HEADER */
+header{
+  background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 8%;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+header h2{ color:var(--primary); }
+
+/* THREE HORIZONTAL MENU */
+.menu{
+  position:relative;
+  cursor:pointer;
+  font-size:26px;
+}
+
+.dropdown{
+  position:absolute;
+  left:0;
+  top:35px;
+  background:white;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  border-radius:8px;
+  display:none;
+  flex-direction:column;
+  min-width:120px;
+}
+.dropdown a{
+  padding:10px;
+  text-decoration:none;
+  color:#333;
+}
+.dropdown a:hover{
+  background:var(--cream);
+}
+
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#333;
+  font-weight:500;
+}
+nav a.highlight{
+  background:var(--accent);
+  color:white;
+  padding:8px 15px;
+  border-radius:5px;
+}
+nav a:hover{ color:var(--accent); }
+
+/* HERO */
+.hero{
+  position:relative;
+  height:85vh;
+  overflow:hidden;
+}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:opacity 1s ease-in-out;
+}
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.active{ opacity:1; }
+
+.hero-content{
+  position:absolute;
+  bottom:15%;
+  left:50%;
+  transform:translateX(-50%);
+  text-align:center;
+  color:white;
+  background:rgba(0,0,0,0.5);
+  padding:20px 40px;
+  border-radius:10px;
+}
+.hero-content h1{ font-size:48px; }
+
+/* FIXED EMERGENCY */
+.emergency-btn{
+  position:fixed;
+  bottom:20px;
+  right:30px;
+  background:var(--accent);
+  color:white;
+  padding:12px 25px;
+  border-radius:30px;
+  font-weight:bold;
+  text-decoration:none;
+  z-index:2000;
+}
+
+/* SECTION */
+section{ padding:80px 10%; }
+
+.section-title{
+  text-align:center;
+  font-size:36px;
+  color:var(--primary);
+  margin-bottom:40px;
+}
+
+/* UNIQUE ABOUT STYLE */
+.about-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.about-text{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+.about-text h3{
+  color:var(--primary);
+  margin-bottom:15px;
+}
+.about-img img{
+  width:100%;
+  border-radius:15px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+/* DOCTORS */
+.doctor{
+  text-align:center;
+}
+.doctor img{
+  width:160px;
+  height:160px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid var(--primary);
+  background:#e0e0e0; /* empty circle */
+}
+.doctor h4{
+  margin-top:15px;
+  color:var(--primary);
+}
+.speciality{
+  font-size:14px;
+  color:#555;
+  margin-top:5px;
+}
+
+/* TOKEN */
+.token{
+  background:var(--primary);
+  color:white;
+  text-align:center;
+  padding:60px 10%;
+}
+.token input, .token select{
+  padding:10px;
+  width:250px;
+  margin:10px;
+  border:none;
+  border-radius:5px;
+}
+.token button{
+  padding:12px 25px;
+  border:none;
+  background:var(--accent);
+  color:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+  background:#092f38;
+  color:white;
+  padding:40px 10%;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="ticker">
+<span>⚠ Emergency 24/7 | Free Health Camp on Sunday | Covid Vaccination Available | Call: +91 98765 43210</span>
+</div>
+
+<header>
+<div class="logo">
+<div class="menu" onclick="toggleMenu()">☰
+<div class="dropdown" id="dropdown">
+<a href="#">Sign Up</a>
+<a href="#">Register</a>
+</div>
+</div>
+<h2>ION Hospital</h2>
+</div>
+
+<nav>
+<a href="#">Home</a>
+<a href="#welcome">About</a>
+<a href="#departments">Departments</a>
+<a href="#doctors">Doctors</a>
+<a href="#token" class="highlight">Book Token</a>
+</nav>
+</header>
+
+<div class="hero">
+<div class="slide active"><img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118"></div>
+<div class="slide"><img src="https://images.unsplash.com/photo-1581092919534-48a6a0ef71d6"></div>
+
+<div class="hero-content">
+<h1>Ion Hospital</h1>
+<p>"Where Compassion Meets Excellence"</p>
+</div>
+</div>
+
+<a href="#" class="emergency-btn">📞 24×7 Emergency</a>
+
+<section id="welcome">
+<h2 class="section-title">About ION Hospital</h2>
+<div class="about-container">
+<div class="about-text">
+<h3>15 Years of Trusted Healthcare</h3>
+<p>ION Hospital is managed by experienced healthcare leaders providing ethical, affordable and advanced treatment facilities.</p>
+<br>
+<p>We have modern ICUs, modular operation theatres, digital lab systems and 24/7 emergency monitoring.</p>
+<br>
+<p>Our management ensures strict hygiene protocols, patient safety standards and continuous medical innovation.</p>
+</div>
+<div class="about-img">
+<img src="https://images.unsplash.com/photo-1579154204601-01588f351e67">
+</div>
+</div>
+</section>
+
+<section id="departments">
+<h2 class="section-title">Departments</h2>
+<div class="grid">
+<div class="card">❤️ Cardiology</div>
+<div class="card">🧠 Neurology</div>
+<div class="card">🦴 Orthopedics</div>
+<div class="card">👶 Pediatrics</div>
+<div class="card">🤰 Gynecology</div>
+<div class="card">🧬 Oncology</div>
+<div class="card">🫁 Pulmonology</div>
+<div class="card">🩺 General Medicine</div>
+<div class="card">🧪 Pathology</div>
+<div class="card">🚑 Emergency Medicine</div>
+</div>
+</section>
+
+<section id="doctors">
+<h2 class="section-title">Our Doctors</h2>
+<div class="grid">
+
+<div class="doctor">
+<img src="">
+<h4>Dr. Chakri</h4>
+<div class="speciality">Cardiologist</div>
+</div>
+
+<div class="doctor">
+<img src="">
+<h4>Dr. Penchal</h4>
+<div class="speciality">Neurologist</div>
+</div>
+
+<div class="doctor">
+<img src="">
+<h4>Dr. Pooji</h4>
+<div class="speciality">Pediatrician</div>
+</div>
+
+<div class="doctor">
+<img src="">
+<h4>Dr. Mamatha</h4>
+<div class="speciality">Gynecologist</div>
+</div>
+
+<div class="doctor">
+<img src="">
+<h4>Dr. Sravanthi</h4>
+<div class="speciality">Orthopedic Specialist</div>
+</div>
+
+<div class="doctor">
+<img src="">
+<h4>Dr. Gowthami</h4>
+<div class="speciality">Oncologist</div>
+</div>
+
+</div>
+</section>
+
+<section class="token" id="token">
+<h2>Book Your Token</h2>
+<input type="text" placeholder="Your Name">
+<select>
+<option>Select Department</option>
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>Orthopedics</option>
+</select>
+<br>
+<button>Book Now</button>
+</section>
+
+<footer>
+<div class="footer-grid">
+<div>
+<strong>📍 Address:</strong><br>
+Main Road, Vijayawada,<br>
+Andhra Pradesh, India - 520001
+</div>
+
+<div>
+<strong>📞 Contact:</strong><br>
++91 98765 43210<br><br>
+<strong>📧 Email:</strong><br>
+info@ionhospital.com
+</div>
+
+<div>
+<strong>Additional Information:</strong><br>
+24/7 Emergency Services<br>
+Ambulance Available<br>
+Cashless Insurance Supported<br>
+15 Years of Trusted Service
+</div>
+</div>
+</footer>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let index=0;
+setInterval(()=>{
+slides[index].classList.remove("active");
+index=(index+1)%slides.length;
+slides[index].classList.add("active");
+},4000);
+
+function toggleMenu(){
+let dropdown=document.getElementById("dropdown");
+dropdown.style.display=dropdown.style.display==="flex"?"none":"flex";
+}
+</script>
+
+</body>
+</html>
