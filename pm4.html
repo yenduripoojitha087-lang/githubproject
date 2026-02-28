@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ion Hospital</title>
+<title>Ion Hospital - Smart Queue Token System</title>
 
 <style>
 :root{
@@ -23,6 +23,15 @@ body{
   background:var(--cream);
   color:#333;
   scroll-behavior:smooth;
+}
+
+/* SMART QUEUE BAR */
+.queue-bar{
+  background:#e5e5e5;
+  color:#007BFF;
+  text-align:center;
+  padding:8px;
+  font-weight:600;
 }
 
 /* ALERT TICKER */
@@ -65,7 +74,6 @@ header{
 
 header h2{ color:var(--primary); }
 
-/* THREE HORIZONTAL MENU */
 .menu{
   position:relative;
   cursor:pointer;
@@ -81,10 +89,11 @@ header h2{ color:var(--primary); }
   border-radius:8px;
   display:none;
   flex-direction:column;
-  min-width:120px;
+  min-width:90px;
+  font-size:14px;
 }
 .dropdown a{
-  padding:10px;
+  padding:8px;
   text-decoration:none;
   color:#333;
 }
@@ -139,7 +148,7 @@ nav a:hover{ color:var(--accent); }
 }
 .hero-content h1{ font-size:48px; }
 
-/* FIXED EMERGENCY */
+/* EMERGENCY BUTTON */
 .emergency-btn{
   position:fixed;
   bottom:20px;
@@ -163,7 +172,7 @@ section{ padding:80px 10%; }
   margin-bottom:40px;
 }
 
-/* UNIQUE ABOUT STYLE */
+/* ABOUT */
 .about-container{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -175,10 +184,6 @@ section{ padding:80px 10%; }
   padding:30px;
   border-radius:15px;
   box-shadow:0 5px 20px rgba(0,0,0,0.05);
-}
-.about-text h3{
-  color:var(--primary);
-  margin-bottom:15px;
 }
 .about-img img{
   width:100%;
@@ -202,26 +207,49 @@ section{ padding:80px 10%; }
 /* DOCTORS */
 .doctor{
   text-align:center;
+  position:relative;
+  transition:transform 0.3s ease;
 }
+.doctor:hover{ transform:translateY(-10px); }
+
 .doctor img{
   width:160px;
   height:160px;
   border-radius:50%;
   object-fit:cover;
   border:5px solid var(--primary);
-  background:#e0e0e0; /* empty circle */
+  background:#e0e0e0;
 }
+
 .doctor h4{
   margin-top:15px;
   color:var(--primary);
 }
+
 .speciality{
   font-size:14px;
   color:#555;
   margin-top:5px;
 }
 
-/* TOKEN */
+/* CONTACT EFFECT */
+.contact{
+  margin-top:8px;
+  font-size:14px;
+  cursor:pointer;
+}
+.contact:hover{ color:#007BFF; }
+
+.contact-number{
+  font-size:13px;
+  color:#007BFF;
+  display:none;
+}
+.doctor:hover .contact-number{
+  display:block;
+}
+
+/* TOKEN SECTION */
 .token{
   background:var(--primary);
   color:white;
@@ -260,8 +288,12 @@ footer{
 
 <body>
 
+<div class="queue-bar">
+Smart Queue Token System - Reducing Hospital Waiting Time
+</div>
+
 <div class="ticker">
-<span>⚠ Emergency 24/7 | Free Health Camp on Sunday | Covid Vaccination Available | Call: +91 98765 43210</span>
+<span>⚠ Emergency 24/7 | Free Health Camp on Sunday | SMS alerts will be sent when your token is near | Call: +91 98765 43210</span>
 </div>
 
 <header>
@@ -269,7 +301,7 @@ footer{
 <div class="menu" onclick="toggleMenu()">☰
 <div class="dropdown" id="dropdown">
 <a href="#">Sign Up</a>
-<a href="#">Register</a>
+<a href="#">Sign In</a>
 </div>
 </div>
 <h2>ION Hospital</h2>
@@ -284,6 +316,7 @@ footer{
 </nav>
 </header>
 
+<!-- HERO -->
 <div class="hero">
 <div class="slide active"><img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3"></div>
 <div class="slide"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118"></div>
@@ -297,16 +330,38 @@ footer{
 
 <a href="#" class="emergency-btn">📞 24×7 Emergency</a>
 
+<!-- ABOUT -->
 <section id="welcome">
 <h2 class="section-title">About ION Hospital</h2>
 <div class="about-container">
 <div class="about-text">
 <h3>15 Years of Trusted Healthcare</h3>
-<p>ION Hospital is managed by experienced healthcare leaders providing ethical, affordable and advanced treatment facilities.</p>
+<p>ION Hospital provides ethical, affordable and advanced treatment facilities with modern ICUs and 24/7 emergency care.<br>
+
+<h4>Our Vision</h4>
+<p>
+Our vision is to become the most trusted healthcare provider by offering innovative, patient-centered, and affordable medical services. 
+We aim to combine advanced technology with compassionate care to ensure the best outcomes for every patient.
+</p>
+
 <br>
-<p>We have modern ICUs, modular operation theatres, digital lab systems and 24/7 emergency monitoring.</p>
+
+
 <br>
-<p>Our management ensures strict hygiene protocols, patient safety standards and continuous medical innovation.</p>
+
+<h4>Why Choose ION Hospital?</h4>
+<p>
+✔ 24/7 Emergency & Trauma Care<br>
+✔ Experienced & Qualified Doctors<br>
+✔ Affordable Treatment Plans<br>
+✔ Modern Diagnostic Equipment<br>
+✔ Patient-Friendly Digital Token Booking<br>
+✔ Quick SMS Alerts for Appointment Updates
+</p>
+
+<br>
+
+
 </div>
 <div class="about-img">
 <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67">
@@ -314,6 +369,7 @@ footer{
 </div>
 </section>
 
+<!-- DEPARTMENTS -->
 <section id="departments">
 <h2 class="section-title">Departments</h2>
 <div class="grid">
@@ -330,49 +386,20 @@ footer{
 </div>
 </section>
 
+<!-- DOCTORS -->
 <section id="doctors">
 <h2 class="section-title">Our Doctors</h2>
 <div class="grid">
-
-<div class="doctor">
-<img src="">
-<h4>Dr. Chakri</h4>
-<div class="speciality">Cardiologist</div>
-</div>
-
-<div class="doctor">
-<img src="">
-<h4>Dr. Penchal</h4>
-<div class="speciality">Neurologist</div>
-</div>
-
-<div class="doctor">
-<img src="">
-<h4>Dr. Pooji</h4>
-<div class="speciality">Pediatrician</div>
-</div>
-
-<div class="doctor">
-<img src="">
-<h4>Dr. Mamatha</h4>
-<div class="speciality">Gynecologist</div>
-</div>
-
-<div class="doctor">
-<img src="">
-<h4>Dr. Sravanthi</h4>
-<div class="speciality">Orthopedic Specialist</div>
-</div>
-
-<div class="doctor">
-<img src="">
-<h4>Dr. Gowthami</h4>
-<div class="speciality">Oncologist</div>
-</div>
-
+<div class="doctor"><img src=""><h4>Dr. Chakri</h4><div class="speciality">Cardiologist</div><div class="contact">📞 Contact</div><div class="contact-number">+91 90000 11111</div></div>
+<div class="doctor"><img src=""><h4>Dr. Penchal</h4><div class="speciality">Neurologist</div><div class="contact">📞 Contact</div><div class="contact-number">+91 90000 22222</div></div>
+<div class="doctor"><img src=""><h4>Dr. Pooji</h4><div class="speciality">Pediatrician</div><div class="contact">📞 Contact</div><div class="contact-number">+91 90000 33333</div></div>
+<div class="doctor"><img src=""><h4>Dr. Mamatha</h4><div class="speciality">Gynecologist</div><div class="contact">📞 Contact</div><div class="contact-number">+91 90000 44444</div></div>
+<div class="doctor"><img src=""><h4>Dr. Sravanthi</h4><div class="speciality">Orthopedic Specialist</div><div class="contact">📞 Contact</div><div class="contact-number">+91 90000 55555</div></div>
+<div class="doctor"><img src=""><h4>Dr. Gowthami</h4><div class="speciality">Oncologist</div><div class="contact">📞 Contact</div><div class="contact-number">+91 90000 66666</div></div>
 </div>
 </section>
 
+<!-- TOKEN -->
 <section class="token" id="token">
 <h2>Book Your Token</h2>
 <input type="text" placeholder="Your Name">
@@ -381,11 +408,19 @@ footer{
 <option>Cardiology</option>
 <option>Neurology</option>
 <option>Orthopedics</option>
+<option>Pediatrics</option>
+<option>Gynecology</option>
+<option>Oncology</option>
+<option>Pulmonology</option>
+<option>General Medicine</option>
+<option>Pathology</option>
+<option>Emergency Medicine</option>
 </select>
 <br>
 <button>Book Now</button>
 </section>
 
+<!-- FOOTER -->
 <footer>
 <div class="footer-grid">
 <div>
@@ -393,14 +428,12 @@ footer{
 Main Road, Vijayawada,<br>
 Andhra Pradesh, India - 520001
 </div>
-
 <div>
 <strong>📞 Contact:</strong><br>
-+91 98765 43210<br><br>
++91 98765 43210<br>
 <strong>📧 Email:</strong><br>
 info@ionhospital.com
 </div>
-
 <div>
 <strong>Additional Information:</strong><br>
 24/7 Emergency Services<br>
