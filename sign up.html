@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - ION Hospital</title>
+
+<style>
+:root{
+  --primary:#0F4C5C;
+  --accent:#FF6B6B;
+  --cream:#F8F5F2;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+
+body{
+  background:var(--cream);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+/* Signup Box */
+.signup-container{
+  background:white;
+  padding:40px;
+  width:380px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  text-align:center;
+}
+
+.signup-container h2{
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+.signup-container p{
+  margin-bottom:20px;
+  font-size:14px;
+  color:#555;
+}
+
+.signup-container input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.signup-container select{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:14px;
+}
+
+.signup-container button{
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  background:var(--accent);
+  border:none;
+  color:white;
+  font-weight:bold;
+  border-radius:6px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.signup-container button:hover{
+  opacity:0.9;
+}
+
+.signup-container a{
+  color:var(--primary);
+  text-decoration:none;
+  font-weight:600;
+}
+
+.signup-container a:hover{
+  text-decoration:underline;
+}
+
+.back-home{
+  margin-top:15px;
+  display:block;
+  font-size:13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="signup-container">
+<h2>ION Hospital</h2>
+<p>Create Your Account</p>
+
+<form>
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="text" placeholder="Mobile Number" required>
+<input type="password" placeholder="Password" required>
+<input type="password" placeholder="Confirm Password" required>
+
+<select required>
+<option value="">Select Gender</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+
+<button type="submit">Register</button>
+</form>
+
+<p>Already have an account? <a href="signin.html">Sign In</a></p>
+
+<a href="index.html" class="back-home">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
